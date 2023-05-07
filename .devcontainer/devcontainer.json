@@ -1,0 +1,43 @@
+{
+  "name": "DevContainer for Zenn.dev Contents",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {}
+  },
+
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "files.trimTrailingWhitespace": false,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "shardulm94.trailing-spaces",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "oderwat.indent-rainbow",
+        "esbenp.prettier-vscode",
+        "mhutchie.git-graph",
+        "taichi.vscode-textlint",
+        "negokaz.zenn-editor"
+      ]
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [8000],
+
+  "remoteEnv": { "CHOKIDAR_USEPOLLING": "true" },
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // force update Zenn CLI
+  // "postCreateCommand": "npm install zenn-cli@latest",
+
+  "remoteUser": "node"
+}

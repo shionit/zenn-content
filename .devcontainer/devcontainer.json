@@ -4,7 +4,6 @@
     "dockerfile": "Dockerfile",
     "args": {}
   },
-
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.
@@ -15,7 +14,6 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode"
       },
-
       // Add the IDs of extensions you want installed when the container is created.
       "extensions": [
         "shardulm94.trailing-spaces",
@@ -29,15 +27,15 @@
       ]
     }
   },
-
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [8000],
-
-  "remoteEnv": { "CHOKIDAR_USEPOLLING": "true" },
-
+  "forwardPorts": [
+    8000
+  ],
+  "remoteEnv": {
+    "CHOKIDAR_USEPOLLING": "true"
+  },
   // Use 'postCreateCommand' to run commands after the container is created.
   // force update Zenn CLI
   // "postCreateCommand": "npm install zenn-cli@latest",
-
   "remoteUser": "node"
 }

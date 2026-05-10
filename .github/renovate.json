@@ -1,0 +1,70 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+
+  "timezone": "Asia/Tokyo",
+
+  // Run once a day on weekdays before 9 AM JST — reduces noise while staying current.
+  "schedule": ["before 9am on weekdays"],
+
+  "labels": ["dependencies"],
+
+  // GitHub Actions: always pin to digest (full commit SHA) so tags cannot be
+  // silently mutated by a compromised upstream maintainer.
+  "github-actions": {
+    "pinDigests": true
+  },
+
+  // Docker: pin Dockerfile FROM lines to digest for reproducible builds.
+  "docker": {
+    "enabled": true,
+    "pinDigests": true
+  },
+
+  "packageRules": [
+    {
+      // Group all GitHub Actions updates into a single PR to minimise noise.
+      // Digest and minor/patch bumps are low-risk and auto-merged.
+      "description": "Group and auto-merge GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "matchUpdateTypes": ["digest", "patch", "minor"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      // Major GitHub Actions version bumps (e.g. actions/checkout v4 → v5)
+      // are kept separate for manual review because they can change behaviour.
+      "description": "Require manual review for GitHub Actions major updates",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      // Group all textlint-related npm packages — they tend to release together.
+      "description": "Group textlint package updates",
+      "matchPackageNames": ["textlint", "/^textlint-/"],
+      "groupName": "textlint packages"
+    },
+    {
+      // Docker digest-only bumps mean the same image tag now points to a newer
+      // layer rebuild — safe to auto-merge (no functional change).
+      "description": "Auto-merge Dockerfile digest-only bumps",
+      "matchManagers": ["dockerfile"],
+      "matchUpdateTypes": ["digest"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      // Node.js LTS minor/patch upgrades in the Dockerfile are generally safe.
+      "description": "Auto-merge Node.js minor and patch updates in Dockerfile",
+      "matchManagers": ["dockerfile"],
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ]
+}

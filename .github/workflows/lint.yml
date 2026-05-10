@@ -1,0 +1,39 @@
+name: Lint
+
+# Runs textlint on pull requests and annotates results inline via reviewdog.
+# Uses pull_request (not pull_request_target) so fork PRs cannot access secrets
+# or receive write tokens — safe for public repos.
+on:
+  pull_request:
+    branches: [main]
+
+# Minimal GITHUB_TOKEN permissions:
+#   contents: read  — checkout
+#   pull-requests: write — reviewdog inline PR annotations
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  textlint:
+    name: textlint
+    runs-on: ubuntu-latest
+    steps:
+      # StepSecurity Harden Runner: audit mode logs unexpected outbound calls
+      # without blocking. Upgrade to egress-policy: block once the allowed
+      # endpoint list is confirmed stable.
+      - name: Harden Runner
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: textlint (reviewdog PR review)
+        uses: tsuyoshicho/action-textlint@ace6abb4fd6736f30f2319c7e21b7adf4e93dc46 # v3.11.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          level: warning
+          textlint_flags: "articles/**"

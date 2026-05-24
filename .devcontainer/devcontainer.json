@@ -22,15 +22,13 @@
         "oderwat.indent-rainbow",
         "esbenp.prettier-vscode",
         "mhutchie.git-graph",
-        "taichi.vscode-textlint",
+        "3w36zj6.textlint",
         "negokaz.zenn-editor"
       ]
     }
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [
-    8000
-  ],
+  "forwardPorts": [8000],
   "remoteEnv": {
     "CHOKIDAR_USEPOLLING": "true"
   },

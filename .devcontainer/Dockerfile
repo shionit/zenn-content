@@ -1,6 +1,6 @@
 # Pinned to a specific digest so Renovate can track and update it automatically.
 # The digest ensures reproducible builds even if the tag is re-pushed upstream.
-FROM node:lts-alpine3.22@sha256:f587a14b20e59fa6706b0bd82ef3ee330fd4c49f6372e37ed4920d0b6874e4ec
+FROM node:lts-alpine3.22@sha256:191c9f0080fcbbc6547a85dc0ff7988072214a355aabdc1d2ec55a7dae5eea8a
 
 RUN apk update && \
     apk --no-cache add git openssh && \

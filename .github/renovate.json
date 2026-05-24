@@ -11,6 +11,10 @@
 
   "labels": ["dependencies"],
 
+  // Wait 5 days after a new release before creating a PR — avoids yanked or
+  // broken releases that are quickly patched by upstream maintainers.
+  "minimumReleaseAge": "5 days",
+
   // GitHub Actions: always pin to digest (full commit SHA) so tags cannot be
   // silently mutated by a compromised upstream maintainer.
   "github-actions": {

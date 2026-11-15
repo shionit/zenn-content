@@ -6,9 +6,9 @@
 
   "timezone": "Asia/Tokyo",
 
-  // Run once a week on Wednesday (JST) — reduces noise while staying current.
-  // Cron (minute must be "*"): any hour, Wednesday, evaluated in `timezone`.
-  "schedule": ["* * * * 3"],
+  // Run once a week on Wednesday before 9 AM JST — reduces noise while staying current.
+  // Cron (minute must be "*"): hours 0-8, Wednesday, evaluated in `timezone`.
+  "schedule": ["* 0-8 * * 3"],
 
   "labels": ["dependencies"],
 

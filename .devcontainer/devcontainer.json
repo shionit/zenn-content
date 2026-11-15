@@ -1,8 +1,7 @@
 {
   "name": "DevContainer for Zenn.dev Contents",
   "build": {
-    "dockerfile": "Dockerfile",
-    "args": {}
+    "dockerfile": "Dockerfile"
   },
   // Configure tool-specific properties.
   "customizations": {
@@ -32,8 +31,7 @@
   "remoteEnv": {
     "CHOKIDAR_USEPOLLING": "true"
   },
-  // Use 'postCreateCommand' to run commands after the container is created.
-  // force update Zenn CLI
-  // "postCreateCommand": "npm install zenn-cli@latest",
+  // Install zenn-cli and textlint from package-lock.json after the container is created.
+  "postCreateCommand": "npm ci",
   "remoteUser": "node"
 }

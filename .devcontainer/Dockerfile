@@ -1,6 +1,7 @@
-# Pinned to a specific digest so Renovate can track and update it automatically.
-# The digest ensures reproducible builds even if the tag is re-pushed upstream.
-FROM node:lts-alpine3.22@sha256:191c9f0080fcbbc6547a85dc0ff7988072214a355aabdc1d2ec55a7dae5eea8a
+# Node 26 (LTS) on the current Alpine release, pinned to a digest for reproducible builds.
+# Renovate bumps the digest as the tag is rebuilt (new Node 26.x / Alpine) and opens a
+# separate PR for the next Node major. Avoid "lts-alpineX.Y": those tags freeze over time.
+FROM node:26-alpine@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5
 
 RUN apk add --no-cache git openssh && \
     apk add --no-cache --upgrade grep

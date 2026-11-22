@@ -2,7 +2,7 @@
   "name": "zenn-content",
   "private": true,
   "devDependencies": {
-    "prettier": "3.9.10",
+    "prettier": "3.10.1",
     "textlint": "15.8.0",
     "textlint-rule-preset-ja-spacing": "2.4.3",
     "textlint-rule-preset-ja-technical-writing": "12.0.2",
